@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { SectionContainer, Container } from "../styles/CommonStyles";
 import Footer from "../components/Footer";
@@ -81,6 +81,68 @@ const ProjectImages = styled.div`
   gap: 2rem;
 `;
 
+const ImageModal = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+  cursor: zoom-out;
+`;
+
+const ModalImage = styled(motion.img)`
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1001;
+
+  &:hover {
+    color: #63b3ed;
+  }
+`;
+
+const NavigationButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 1001;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(99, 179, 237, 0.5);
+  }
+
+  ${(props) => (props.direction === "prev" ? "left: 2rem;" : "right: 2rem;")}
+`;
+
 const MainImageContainer = styled.div`
   width: 100%;
   height: 600px;
@@ -89,6 +151,7 @@ const MainImageContainer = styled.div`
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   background: #0a0a0a;
+  cursor: zoom-in;
 `;
 
 const MainImage = styled(motion.img)`
@@ -144,6 +207,28 @@ const ProjectInfo = styled.div`
   border: 1px solid rgba(66, 153, 225, 0.1);
 `;
 
+const ProjectOverview = styled.div`
+  width: 100%;
+`;
+
+const FeaturesGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const FeatureSection = styled.div`
+  background: rgba(26, 32, 44, 0.4);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(66, 153, 225, 0.1);
+`;
+
 const SectionTitle = styled.h3`
   font-size: 1.5rem;
   color: #63b3ed;
@@ -195,6 +280,7 @@ const FeatureList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: 100%;
 `;
 
 const FeatureItem = styled.li`
@@ -345,6 +431,7 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const project = projectData[id];
   const [selectedImage, setSelectedImage] = React.useState(0);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -353,6 +440,28 @@ const ProjectDetail = () => {
 
   const handleLogoClick = () => {
     navigate("/");
+  };
+
+  const handleImageClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handlePrevImage = (e) => {
+    e.stopPropagation();
+    setSelectedImage((prev) =>
+      prev === 0 ? project.images.length - 1 : prev - 1
+    );
+  };
+
+  const handleNextImage = (e) => {
+    e.stopPropagation();
+    setSelectedImage((prev) =>
+      prev === project.images.length - 1 ? 0 : prev + 1
+    );
   };
 
   if (!project) {
@@ -386,7 +495,7 @@ const ProjectDetail = () => {
 
           <ProjectGrid>
             <ProjectImages>
-              <MainImageContainer>
+              <MainImageContainer onClick={handleImageClick}>
                 <MainImage
                   src={project.images[selectedImage]}
                   alt={`${project.title} main view`}
@@ -410,12 +519,12 @@ const ProjectDetail = () => {
             </ProjectImages>
 
             <ProjectInfo>
-              <div>
+              <ProjectOverview>
                 <SectionTitle>
                   <FaInfoCircle /> 프로젝트 개요
                 </SectionTitle>
                 <Description>{project.description}</Description>
-              </div>
+              </ProjectOverview>
 
               <div>
                 <SectionTitle>
@@ -430,43 +539,47 @@ const ProjectDetail = () => {
                 </TechStackGrid>
               </div>
 
-              <div>
-                <SectionTitle>
-                  <FaStar /> 주요 기능
-                </SectionTitle>
-                <FeatureList>
-                  {project.features.map((feature) => (
-                    <FeatureItem
-                      key={feature}
-                      data-is-category={!feature.startsWith("•")}
-                      data-is-subitem={feature.startsWith("•")}
-                    >
-                      {!feature.startsWith("•") && <FaCheckCircle size={16} />}
-                      {feature.replace("• ", "")}
-                    </FeatureItem>
-                  ))}
-                </FeatureList>
-              </div>
+              <FeaturesGrid>
+                <FeatureSection>
+                  <SectionTitle>
+                    <FaStar /> 주요 기능
+                  </SectionTitle>
+                  <FeatureList>
+                    {project.features.map((feature) => (
+                      <FeatureItem
+                        key={feature}
+                        data-is-category={!feature.startsWith("•")}
+                        data-is-subitem={feature.startsWith("•")}
+                      >
+                        {!feature.startsWith("•") && (
+                          <FaCheckCircle size={16} />
+                        )}
+                        {feature.replace("• ", "")}
+                      </FeatureItem>
+                    ))}
+                  </FeatureList>
+                </FeatureSection>
 
-              <div>
-                <SectionTitle>
-                  <FaLightbulb /> 기술적 도전
-                </SectionTitle>
-                <FeatureList>
-                  {project.challenges.map((challenge) => (
-                    <FeatureItem
-                      key={challenge}
-                      data-is-category={!challenge.startsWith("•")}
-                      data-is-subitem={challenge.startsWith("•")}
-                    >
-                      {!challenge.startsWith("•") && (
-                        <FaExclamationCircle size={16} />
-                      )}
-                      {challenge.replace("• ", "")}
-                    </FeatureItem>
-                  ))}
-                </FeatureList>
-              </div>
+                <FeatureSection>
+                  <SectionTitle>
+                    <FaLightbulb /> 기술적 도전
+                  </SectionTitle>
+                  <FeatureList>
+                    {project.challenges.map((challenge) => (
+                      <FeatureItem
+                        key={challenge}
+                        data-is-category={!challenge.startsWith("•")}
+                        data-is-subitem={challenge.startsWith("•")}
+                      >
+                        {!challenge.startsWith("•") && (
+                          <FaExclamationCircle size={16} />
+                        )}
+                        {challenge.replace("• ", "")}
+                      </FeatureItem>
+                    ))}
+                  </FeatureList>
+                </FeatureSection>
+              </FeaturesGrid>
 
               <Links>
                 <LinkButton
@@ -482,6 +595,34 @@ const ProjectDetail = () => {
         </Content>
       </ProjectDetailContainer>
       <Footer />
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <ImageModal
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseModal}
+          >
+            <CloseButton onClick={handleCloseModal}>×</CloseButton>
+            <NavigationButton direction="prev" onClick={handlePrevImage}>
+              ‹
+            </NavigationButton>
+            <ModalImage
+              src={project.images[selectedImage]}
+              alt={`${project.title} enlarged view`}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            <NavigationButton direction="next" onClick={handleNextImage}>
+              ›
+            </NavigationButton>
+          </ImageModal>
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 };
