@@ -254,18 +254,22 @@ const Title = styled(motion.h1)`
   }
 `;
 
-const projects = {
+const projectData = {
   4: {
     title: "Ateiler - 아티스트 커뮤니티 플랫폼",
     description:
-      "아티스트와 사용자의 커뮤니티가 가능하고, 커뮤니티 내에서 아티스트의 컨텐츠를 확인할 수 있는 플랫폼입니다. React와 Spring Boot를 활용한 풀스택 프로젝트로, 프론트엔드 파트를 담당했습니다.",
-    image: "/portfolio/images/projects/atelier-thumbnail1.png",
+      "아티스트와 사용자의 커뮤니티가 가능하고, 커뮤니티 내에서 아티스트의 컨텐츠를 확인할 수 있는 플랫폼",
     images: [
-      "/portfolio/images/projects/atelier-thumbnail1.png",
-      "/portfolio/images/projects/atelier-thumbnail2.png",
-      "/portfolio/images/projects/atelier-thumbnail5.png",
-      "/portfolio/images/projects/atelier-thumbnail6.png",
-      "/portfolio/images/projects/atelier-thumbnail7.png",
+      "/images/projects/atelier-thumbnail1.png",
+      "/images/projects/atelier-thumbnail2.png",
+      "/images/projects/atelier-thumbnail3.png",
+      "/images/projects/atelier-thumbnail4.png",
+      "/images/projects/atelier-thumbnail5.png",
+      "/images/projects/atelier-thumbnail6.png",
+      "/images/projects/atelier-thumbnail7.png",
+      "/images/projects/atelier-thumbnail8.png",
+      "/images/projects/atelier-thumbnail9.png",
+      "/images/projects/atelier-thumbnail10.png",
     ],
     techStack: [
       "React",
@@ -301,7 +305,7 @@ const projects = {
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const project = projects[id];
+  const project = projectData[id];
   const [selectedImage, setSelectedImage] = React.useState(0);
   const navigate = useNavigate();
 
