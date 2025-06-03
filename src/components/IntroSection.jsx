@@ -20,10 +20,13 @@ const Content = styled(Container)`
   align-items: center;
   z-index: 1;
   gap: 2rem;
+  padding: 0 2rem;
 
   @media (max-width: 968px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
   }
 `;
 
@@ -33,6 +36,7 @@ const TextContent = styled.div`
 
   @media (max-width: 968px) {
     text-align: center;
+    width: 100%;
   }
 `;
 
@@ -41,6 +45,10 @@ const ImageContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 968px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const Track = styled(motion.div)`
@@ -60,8 +68,13 @@ const Title = styled(motion.h1)`
   -webkit-text-fill-color: transparent;
   background-clip: text;
 
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     font-size: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -83,9 +96,12 @@ const Description = styled(motion.p)`
   margin-bottom: 2rem;
   line-height: 1.6;
 
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     font-size: 1rem;
-    padding: 0 1rem;
+    margin: 0 auto 2rem;
+    br {
+      display: none;
+    }
   }
 `;
 
@@ -93,6 +109,10 @@ const ButtonContainer = styled(motion.div)`
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+
+  @media (max-width: 968px) {
+    justify-content: center;
+  }
 `;
 
 const Button = styled(motion.a)`
@@ -117,6 +137,10 @@ const SocialLinks = styled(motion.div)`
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
+
+  @media (max-width: 968px) {
+    justify-content: center;
+  }
 `;
 
 const SocialLink = styled(motion.a)`
@@ -138,13 +162,14 @@ const ProfileImage = styled(motion.img)`
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 968px) {
-    width: 300px;
-    height: 300px;
-  }
-
-  @media (max-width: 768px) {
     width: 250px;
     height: 250px;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 480px) {
+    width: 200px;
+    height: 200px;
   }
 `;
 
