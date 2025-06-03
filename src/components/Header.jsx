@@ -23,6 +23,8 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  padding: 0 2rem;
 `;
 
 const LogoContainer = styled(RouterLink)`
@@ -34,6 +36,8 @@ const LogoContainer = styled(RouterLink)`
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
+  position: absolute;
+  left: 0;
 
   &:hover {
     background: rgba(255, 255, 255, 0.05);
@@ -69,6 +73,8 @@ const MenuButton = styled.button`
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
+  position: absolute;
+  right: 0;
 
   @media (max-width: 768px) {
     display: block;
@@ -77,7 +83,10 @@ const MenuButton = styled.button`
 
 const NavLinks = styled(motion.div)`
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
+  margin-left: auto;
+  margin-right: 4rem;
+  padding: 0.5rem 0;
 
   @media (max-width: 768px) {
     display: none;
@@ -200,7 +209,9 @@ const Header = ({ onLogoClick }) => {
           <NavLinks>
             <NavLink onClick={() => scrollToSection("intro")}>홈</NavLink>
             <NavLink onClick={() => scrollToSection("about")}>소개</NavLink>
-            <NavLink onClick={() => scrollToSection("skills")}>기술</NavLink>
+            <NavLink onClick={() => scrollToSection("skills")}>
+              주요 기술
+            </NavLink>
             <NavLink onClick={() => scrollToSection("projects")}>
               프로젝트
             </NavLink>
@@ -221,7 +232,9 @@ const Header = ({ onLogoClick }) => {
           >
             <NavLink onClick={() => scrollToSection("intro")}>홈</NavLink>
             <NavLink onClick={() => scrollToSection("about")}>소개</NavLink>
-            <NavLink onClick={() => scrollToSection("skills")}>기술</NavLink>
+            <NavLink onClick={() => scrollToSection("skills")}>
+              주요 기술
+            </NavLink>
             <NavLink onClick={() => scrollToSection("projects")}>
               프로젝트
             </NavLink>
@@ -235,4 +248,5 @@ const Header = ({ onLogoClick }) => {
   );
 };
 
+export { Header };
 export default Header;

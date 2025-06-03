@@ -141,15 +141,16 @@ const SkillsSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-        주요 기술
+          주요 기술
         </Title>
         <Description
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          웹 개발에 필요한 다양한 기술들을 학습하고 실무에 적용해왔습니다.
-          프론트엔드와 백엔드 모두에 관심을 가지고 학습하고 있습니다.
+          웹 개발의 핵심 기술들을 활용하여 실무 프로젝트를 개발했습니다. React를
+          중심으로 프론트엔드 개발에 필요한 다양한 기술들을 학습하고
+          적용해왔습니다.
         </Description>
         <SkillsGrid>
           {skills.map((skill, index) => (

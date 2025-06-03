@@ -94,7 +94,7 @@ const Footer = () => {
           <FooterLink onClick={() => scrollToSection("intro")}>홈</FooterLink>
           <FooterLink onClick={() => scrollToSection("about")}>소개</FooterLink>
           <FooterLink onClick={() => scrollToSection("skills")}>
-            기술
+            주요 기술
           </FooterLink>
           <FooterLink onClick={() => scrollToSection("projects")}>
             프로젝트

@@ -39,6 +39,10 @@ const ProjectGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -51,6 +55,8 @@ const ProjectCard = styled(motion.div)`
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  min-height: 280px;
+  height: 100%;
 
   &:hover {
     transform: translateY(-5px);
@@ -82,6 +88,7 @@ const ProjectDescription = styled.p`
   font-size: 1rem;
   line-height: 1.6;
   flex-grow: 1;
+  margin-bottom: 1rem;
 `;
 
 const ProjectLink = styled(Link)`
@@ -92,6 +99,7 @@ const ProjectLink = styled(Link)`
   gap: 0.5rem;
   font-size: 0.9rem;
   margin-top: auto;
+  width: fit-content;
 
   &:hover {
     color: #63b3ed;
@@ -120,21 +128,21 @@ const ProjectsSection = () => {
     {
       icon: <FaGlobe />,
       title: "Project 개발 진행 중",
-      description: "블로그 자동화 AI 서비스",
+      description: "생성형 AI 기반 블로그 서비스",
       link: "#",
       status: "개발 진행 중 ",
     },
     {
       icon: <FaCode />,
       title: "Project 개발 기획중",
-      description: "",
+      description: "지출/수입 분석 서비스",
       link: "#",
       status: "개발 기획 중 ",
     },
     {
       icon: <BsGraphUp />,
       title: "Project 개발 기획중",
-      description: "",
+      description: "AI 기반 운동 루틴 추천 서비스",
       link: "#",
       status: "개발 기획 중 ",
     },

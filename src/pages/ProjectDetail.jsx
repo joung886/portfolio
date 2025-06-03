@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { SectionContainer, Container } from "../styles/CommonStyles";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import { Header } from "../components/Header";
 import {
   FaGithub,
   FaExternalLinkAlt,
