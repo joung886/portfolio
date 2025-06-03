@@ -5,6 +5,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { SectionContainer, Container } from "../styles/CommonStyles";
 import Footer from "../components/Footer";
 import { Header } from "../components/Header";
+import TopButton from "../components/TopButton";
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -595,6 +596,7 @@ const ProjectDetail = () => {
         </Content>
       </ProjectDetailContainer>
       <Footer />
+      <TopButton />
 
       <AnimatePresence>
         {isModalOpen && (

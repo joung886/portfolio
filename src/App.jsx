@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import ProjectDetail from "./pages/ProjectDetail";
 import CustomCursor from "./components/CustomCursor";
+import TopButton from "./components/TopButton";
 
 const MainContent = () => {
   return (
@@ -23,6 +24,7 @@ const MainContent = () => {
       <ProjectsSection />
       <ContactSection />
       <Footer />
+      <TopButton />
     </>
   );
 };

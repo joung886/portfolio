@@ -142,7 +142,7 @@ const ProjectsSection = () => {
     {
       icon: <BsGraphUp />,
       title: "Project 개발 기획중",
-      description: "AI 기반 운동 루틴 추천 서비스",
+      description: "AI 기술 정보 큐레이션 플랫폼",
       link: "#",
       status: "개발 기획 중 ",
     },

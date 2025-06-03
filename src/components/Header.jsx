@@ -130,29 +130,33 @@ const NavLink = styled.a`
   }
 `;
 
-const Header = ({ onLogoClick }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const navigate = useNavigate();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const scrollToSection = (sectionId) => {
     setIsMenuOpen(false);
-    navigate("/");
-    setTimeout(() => {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        const headerOffset = 80;
-        const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const headerOffset = 80;
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   useEffect(() => {
@@ -202,7 +206,7 @@ const Header = ({ onLogoClick }) => {
     <>
       <HeaderContainer show={visible}>
         <Nav>
-          <LogoContainer to="/">
+          <LogoContainer to="/" onClick={scrollToTop}>
             <LogoImage src="/images/logo.svg" alt="Portfolio Logo" />
           </LogoContainer>
           <MenuButton onClick={toggleMenu}>{isMenuOpen ? "×" : "☰"}</MenuButton>
@@ -213,7 +217,7 @@ const Header = ({ onLogoClick }) => {
               주요 기술
             </NavLink>
             <NavLink onClick={() => scrollToSection("projects")}>
-              프로젝트
+              경험 & 프로젝트
             </NavLink>
             <NavLink onClick={() => scrollToSection("contact")}>
               메세지 남기기
@@ -236,7 +240,7 @@ const Header = ({ onLogoClick }) => {
               주요 기술
             </NavLink>
             <NavLink onClick={() => scrollToSection("projects")}>
-              프로젝트
+              경험 & 프로젝트
             </NavLink>
             <NavLink onClick={() => scrollToSection("contact")}>
               메세지 남기기

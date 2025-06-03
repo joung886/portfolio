@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { SectionContainer, Container } from "../styles/CommonStyles";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaChevronDown } from "react-icons/fa";
 import profileImage from "../assets/profile.jpg";
 
 const IntroContainer = styled(SectionContainer)`
@@ -96,7 +96,7 @@ const ButtonContainer = styled(motion.div)`
 `;
 
 const Button = styled(motion.a)`
-  padding: 0.8rem 2rem;
+  padding: 1rem 2rem;
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
@@ -104,25 +104,12 @@ const Button = styled(motion.a)`
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
 
-  &.primary {
-    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-    color: white;
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
-    }
-  }
-
-  &.secondary {
-    background: rgba(45, 55, 72, 0.5);
-    color: white;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    &:hover {
-      transform: translateY(-2px);
-      background: rgba(45, 55, 72, 0.7);
-    }
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
   }
 `;
 
@@ -161,7 +148,45 @@ const ProfileImage = styled(motion.img)`
   }
 `;
 
+const ScrollDownButton = styled(motion.button)`
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(66, 153, 225, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  z-index: 10;
+
+  span {
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  svg {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  &:hover {
+    color: rgba(66, 153, 225, 1);
+  }
+`;
+
 const IntroSection = () => {
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <IntroContainer id="intro">
       <Content>
@@ -206,20 +231,11 @@ const IntroSection = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Button
-              href="#projects"
-              className="primary"
+              as="div"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              프로젝트 보기
-            </Button>
-            <Button
-              href="#contact"
-              className="secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              연락하기
+              기술 블로그
             </Button>
           </ButtonContainer>
           <SocialLinks
@@ -247,6 +263,20 @@ const IntroSection = () => {
           />
         </ImageContent>
       </Content>
+      <ScrollDownButton
+        onClick={scrollToAbout}
+        animate={{
+          y: [0, 10, 0],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <span>스크롤 내리기</span>
+        <FaChevronDown />
+      </ScrollDownButton>
     </IntroContainer>
   );
 };

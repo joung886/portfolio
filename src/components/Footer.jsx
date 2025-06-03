@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const FooterContainer = styled.footer`
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a202c 100%);
+  background: linear-gradient(180deg, #1a202c 0%, #0a0a0a 100%);
   padding: 3rem 0;
   color: #a0aec0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
