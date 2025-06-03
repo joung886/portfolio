@@ -132,6 +132,69 @@ const TimelineDescription = styled.p`
 const Description = styled(motion.div)`
   color: #a0aec0;
   font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+
+  p {
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.3px;
+    word-spacing: 1px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: #4299e1;
+    font-size: 1.15rem;
+    font-weight: 600;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(66, 153, 225, 0.2);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover:after {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+    strong {
+      font-size: 1.05rem;
+    }
+  }
+`;
+
+const AboutContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 6rem 2rem 0;
+  width: 100%;
+
+  @media (max-width: 968px) {
+    padding: 6rem 1rem 0;
+  }
+`;
+
+const AboutText = styled.p`
+  color: #a0aec0;
+  font-size: 1.1rem;
   line-height: 1.6;
   text-align: left;
   width: 100%;
@@ -226,23 +289,24 @@ const AboutSection = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p>
-              사용자 중심의 인터페이스를 구현하는{" "}
-              <strong>프론트엔드 개발자</strong>입니다.
+              안녕하세요. 사용자 중심의 웹 서비스를 구현하는{" "}
+              <strong>프론트엔드 개발자</strong> 정강철입니다.
             </p>
             <p>
-              <strong>React</strong>를 주력으로 프론트엔드 개발을 해왔으며,{" "}
-              <strong>Spring Boot</strong> 기반의 백엔드 팀과 협업한 경험이
-              있습니다.
+              <strong>React</strong>를 주력으로 활용하여 직관적이고 반응형 웹
+              애플리케이션을 개발하고 있으며, <strong>Spring Boot</strong>{" "}
+              기반의 백엔드와의 협업 경험을 보유하고 있습니다.
             </p>
             <p>
-              현재는 프론트엔드 역량을 강화하는 동시에{" "}
-              <strong>백엔드 개발</strong>도 함께 학습하며, 더 나은 웹 서비스
-              구현을 위해 노력하고 있습니다.
+              컴포넌트의 <strong>재사용성</strong>과 <strong>유지보수성</strong>
+              을 고려한 설계를 지향하며, <strong>Styled-Components</strong>와{" "}
+              <strong>Zustand</strong> 등 모던 웹 기술을 활용하여 효율적인
+              개발을 하고자 노력합니다.
             </p>
             <p>
-              <strong>CI/CD 파이프라인</strong>과{" "}
-              <strong>클라우드 인프라</strong>에도 관심을 가지고 있어 개발 환경
-              전반에 대한 이해를 넓혀가고 있습니다.
+              사용자에게 더 나은 경험을 제공하기 위해{" "}
+              <strong>성능 최적화</strong>와 <strong>UI/UX 개선</strong>에 대해
+              지속적으로 고민하고 학습하고 있습니다.
             </p>
           </Description>
         </RightSection>
