@@ -194,7 +194,7 @@ const Header = ({ onLogoClick }) => {
       <HeaderContainer show={visible}>
         <Nav>
           <LogoContainer to="/">
-            <LogoImage src="/portfolio/images/logo.svg" alt="Portfolio Logo" />
+            <LogoImage src="/images/logo.svg" alt="Portfolio Logo" />
           </LogoContainer>
           <MenuButton onClick={toggleMenu}>{isMenuOpen ? "×" : "☰"}</MenuButton>
           <NavLinks>
@@ -204,7 +204,9 @@ const Header = ({ onLogoClick }) => {
             <NavLink onClick={() => scrollToSection("projects")}>
               프로젝트
             </NavLink>
-            <NavLink onClick={() => scrollToSection("contact")}>메세지 남기기</NavLink>
+            <NavLink onClick={() => scrollToSection("contact")}>
+              메세지 남기기
+            </NavLink>
           </NavLinks>
         </Nav>
       </HeaderContainer>
@@ -223,7 +225,9 @@ const Header = ({ onLogoClick }) => {
             <NavLink onClick={() => scrollToSection("projects")}>
               프로젝트
             </NavLink>
-            <NavLink onClick={() => scrollToSection("contact")}>메세지 남기기</NavLink>
+            <NavLink onClick={() => scrollToSection("contact")}>
+              메세지 남기기
+            </NavLink>
           </MobileMenu>
         )}
       </AnimatePresence>
