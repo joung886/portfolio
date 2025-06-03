@@ -1,22 +1,14 @@
-import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 
 export const SectionContainer = styled.section`
-  width: 100%;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #0a0a0a;
+  width: 100%;
   position: relative;
+  padding: 6rem 0;
   overflow: hidden;
-  color: white;
-  padding: 4rem 0;
-
-  @media (max-width: 768px) {
-    padding: 2rem 1rem;
-  }
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 `;
 
 export const Container = styled.div`
@@ -26,10 +18,6 @@ export const Container = styled.div`
   padding: 0 2rem;
   position: relative;
   z-index: 1;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -82,7 +70,7 @@ export const Card = styled(motion.div)`
   }
 `;
 
-export const Grid = styled.div<{ columns?: number }>`
+export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(${(props) => props.columns || 3}, 1fr);
   gap: 2rem;
@@ -123,22 +111,25 @@ export const Button = styled(motion.a)`
 
 export const fadeInUp = {
   initial: {
-    y: 20,
+    y: 60,
     opacity: 0,
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
+      ease: [0.6, -0.05, 0.01, 0.99],
     },
   },
 };
 
 export const staggerContainer = {
+  initial: {},
   animate: {
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
     },
   },
 };

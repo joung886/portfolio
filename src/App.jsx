@@ -1,17 +1,18 @@
-import { Global } from "@emotion/react";
-import { globalStyles } from "./styles/GlobalStyles";
+import React from "react";
+import GlobalStyles from "./styles/GlobalStyles";
 import Background3D from "./components/Background3D";
 import IntroSection from "./components/IntroSection";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
-import Footer from "./components/Footer";
-import { HashRouter, Switch, Route } from "react-router-dom";
-import ProjectDetail from "./pages/ProjectDetail";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Routes, Route } from "react-router-dom";
+import ProjectDetail from "./pages/ProjectDetail";
+import CustomCursor from "./components/CustomCursor";
 
-function MainContent() {
+const MainContent = () => {
   return (
     <>
       <Header />
@@ -24,20 +25,19 @@ function MainContent() {
       <Footer />
     </>
   );
-}
+};
 
-function App() {
+const App = () => {
   return (
     <>
-      <Global styles={globalStyles} />
-      <HashRouter>
-        <Switch>
-          <Route exact path="/" component={MainContent} />
-          <Route path="/project/:id" component={ProjectDetail} />
-        </Switch>
-      </HashRouter>
+      <GlobalStyles />
+      <CustomCursor />
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/project/:id" element={<ProjectDetail />} />
+      </Routes>
     </>
   );
-}
+};
 
 export default App;

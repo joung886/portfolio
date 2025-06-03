@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4299e1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90cdf4;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main text -->
+  <text x="10" y="28" font-family="Arial" font-size="24" font-weight="bold" fill="url(#logoGradient)" filter="url(#glow)" letter-spacing="2">
+    PORTFOLIO
+  </text>
+  
+  <!-- Decorative elements -->
+  <rect x="5" y="32" width="170" height="2" fill="url(#logoGradient)" opacity="0.5" rx="1"/>
+  <circle cx="5" cy="33" r="2" fill="url(#logoGradient)"/>
+  <circle cx="175" cy="33" r="2" fill="url(#logoGradient)"/>
+  
+  <!-- Abstract design element -->
+  <path d="M160 8 L170 8 L165 3 Z" fill="url(#logoGradient)" opacity="0.8"/>
+</svg>
