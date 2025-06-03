@@ -194,7 +194,7 @@ const FeatureList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 `;
 
 const FeatureItem = styled.li`
@@ -208,6 +208,28 @@ const FeatureItem = styled.li`
   svg {
     color: #63b3ed;
     margin-top: 0.25rem;
+  }
+
+  &[data-is-category="true"] {
+    color: #63b3ed;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  &[data-is-subitem="true"] {
+    margin-left: 1.5rem;
+    color: #cbd5e0;
+
+    &:before {
+      content: "•";
+      color: #63b3ed;
+      margin-right: 0.5rem;
+    }
   }
 `;
 
@@ -281,24 +303,40 @@ const projectData = {
     ],
     github: "https://github.com/joung886/atelier",
     features: [
-      "전체 UI/UX 설계 및 마이페이지, 드로잉, 로그인 화면 개발",
-      "Zustand를 활용한 전역 상태 관리 구현",
-      "Styled-Components를 사용한 재사용 가능한 컴포넌트 설계",
-      "React Router를 활용한 SPA 라우팅 구현",
-      "Axios Interceptor를 활용한 API 요청/응답 처리",
-      "Framer Motion을 활용한 부드러운 애니메이션 효과 구현",
-      "반응형 디자인으로 모바일 대응",
-      "사용자 인증 및 권한 관리 구현",
+      "UI/UX 설계 및 구현",
+      "• Figma를 활용한 전체 디자인 시스템 설계",
+      "• 직관적이고 모던한 사용자 인터페이스 구현",
+      "• 반응형 레이아웃으로 모든 디바이스 대응",
+      "상태 관리 시스템",
+      "• Zustand를 활용한 효율적인 전역 상태 관리",
+      "• 사용자 인증 정보 및 앱 설정 상태 관리",
+      "• 실시간 데이터 동기화 구현",
+      "컴포넌트 아키텍처",
+      "• Styled-Components를 활용한 모듈화된 컴포넌트 설계",
+      "• 재사용 가능한 공통 컴포넌트 라이브러리 구축",
+      "• 일관된 디자인 시스템 적용",
+      "라우팅 및 네비게이션",
+      "• React Router를 활용한 SPA 구조 설계",
+      "• 동적 라우팅 및 페이지 전환 효과 구현",
+      "• 사용자 권한별 접근 제어 시스템 구축",
     ],
     challenges: [
-      "컴포넌트 재사용성과 유지보수성을 고려한 구조 설계",
-      "대용량 이미지 처리 및 최적화 (lazy loading, 이미지 압축)",
-      "상태 관리 라이브러리 도입으로 복잡한 상태 관리 해결",
-      "사용자 경험을 고려한 로딩 상태 및 에러 처리",
-      "백엔드 API와의 효율적인 통신 구조 설계",
-      "크로스 브라우징 이슈 해결",
-      "성능 최적화 (메모이제이션, 코드 스플리팅)",
-      "Git을 활용한 협업 워크플로우 구축",
+      "성능 최적화",
+      "• Code Splitting을 통한 초기 로딩 시간 단축",
+      "• React.memo와 useMemo를 활용한 불필요한 리렌더링 방지",
+      "• 이미지 레이지 로딩 구현으로 페이지 로드 최적화",
+      "데이터 관리",
+      "• Axios Interceptor를 활용한 효율적인 API 통신 구조",
+      "• 요청/응답 에러 핸들링 및 재시도 로직 구현",
+      "• JWT 기반 인증 시스템 구축",
+      "사용자 경험",
+      "• Framer Motion을 활용한 부드러운 애니메이션 효과",
+      "• 스켈레톤 UI를 통한 로딩 상태 처리",
+      "• 사용자 피드백을 위한 토스트 메시지 시스템",
+      "협업 및 유지보수",
+      "• Git Flow 전략을 통한 체계적인 버전 관리",
+      "• ESLint/Prettier를 통한 일관된 코드 스타일 유지",
+      "• 컴포넌트 문서화를 통한 유지보수성 향상",
     ],
   },
 };
@@ -398,9 +436,13 @@ const ProjectDetail = () => {
                 </SectionTitle>
                 <FeatureList>
                   {project.features.map((feature) => (
-                    <FeatureItem key={feature}>
-                      <FaCheckCircle size={16} />
-                      {feature}
+                    <FeatureItem
+                      key={feature}
+                      data-is-category={!feature.startsWith("•")}
+                      data-is-subitem={feature.startsWith("•")}
+                    >
+                      {!feature.startsWith("•") && <FaCheckCircle size={16} />}
+                      {feature.replace("• ", "")}
                     </FeatureItem>
                   ))}
                 </FeatureList>
@@ -412,9 +454,15 @@ const ProjectDetail = () => {
                 </SectionTitle>
                 <FeatureList>
                   {project.challenges.map((challenge) => (
-                    <FeatureItem key={challenge}>
-                      <FaExclamationCircle size={16} />
-                      {challenge}
+                    <FeatureItem
+                      key={challenge}
+                      data-is-category={!challenge.startsWith("•")}
+                      data-is-subitem={challenge.startsWith("•")}
+                    >
+                      {!challenge.startsWith("•") && (
+                        <FaExclamationCircle size={16} />
+                      )}
+                      {challenge.replace("• ", "")}
                     </FeatureItem>
                   ))}
                 </FeatureList>
