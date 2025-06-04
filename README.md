@@ -76,7 +76,7 @@ npm run dev
 
 이 프로젝트는 Vercel을 통해 배포되었습니다.
 
-- Production URL: [https://portfolio-rkdcjf311s-projects.vercel.app/](https://portfolio-rkdcjf311s-projects.vercel.app/)
+- Production URL: [https://joung-portfolio-df88xnt77-rkdcjf311s-projects.vercel.app](https://joung-portfolio-df88xnt77-rkdcjf311s-projects.vercel.app)
 
 ## ✨ 주요 업데이트
 
