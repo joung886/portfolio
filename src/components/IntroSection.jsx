@@ -255,13 +255,6 @@ const IntroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <Button
-              as="div"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              기술 블로그
-            </Button>
           </ButtonContainer>
           <SocialLinks
             initial={{ opacity: 0, y: 20 }}
